@@ -1,18 +1,12 @@
 package com.luckyvicky.dndbackend.ys;
 
-import java.util.List;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.luckyvicky.dndbackend.dto.Destination;
-import com.luckyvicky.dndbackend.dto.MapPosition;
 import com.luckyvicky.dndbackend.dto.PollingResult;
-import com.luckyvicky.dndbackend.dto.Results;
-import com.luckyvicky.dndbackend.dto.SelectedDestination;
 import com.luckyvicky.dndbackend.dto.SelectedRandomGotcha;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class YsController {
 	private final YsService ysService;
 
-	@PostMapping("")
+	@PostMapping("/api/final-result")
 	public String saveFinalResult(
 		HttpServletRequest request,
 		@RequestBody Long statementId
@@ -37,14 +31,14 @@ public class YsController {
 		return userId;
 	}
 
-	@GetMapping("/{userId}")
+	@GetMapping("/api/final-result/{userId}")
 	public FinalResults getFinalResult(
 		@PathVariable String userId
 	) {
 		return ysService.getFinalResult(userId);
 	}
 
-	@PostMapping("")
+	@PostMapping("/api/random-gotcha")
 	public String selectRandomGotcha(
 		@RequestBody SelectedRandomGotcha selectedRandomGotcha
 	) {
@@ -53,7 +47,7 @@ public class YsController {
 		return selectedRandomGotcha.userId();
 	}
 
-	@GetMapping("")
+	@GetMapping("/api/final-result/polling")
 	public PollingResult getPollingResult(
 		HttpServletRequest request
 	) {
