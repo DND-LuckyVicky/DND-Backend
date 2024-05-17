@@ -7,16 +7,29 @@ import com.luckyvicky.dndbackend.entity.repository.TempRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.net.URI;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class HnService {
-    private final TempRepository tempRepository;
+
+    private final OdsayProperties odSayProperties;
+    private final OdsayOpenFeign odsayOpenFeign;
 
     public List<Destination> saveDestination(MapPosition mapPosition, String userId) {
-        // do something
-        return null;
+        var odsaySearchRequest = OdsaySearchRequest.of(
+            odSayProperties.getApiKey(),
+            mapPosition
+        );
+        var uri = URI.create(odSayProperties.getUrl());
+        var odsaySearchResponse = odsayOpenFeign.searchPublicTransportation(
+            uri,
+            odsaySearchRequest
+        );
+        return odsaySearchResponse.result().path().stream()
+            .map(Destination::of)
+            .toList();
     }
 
     public void selectDestination(String userId) {
