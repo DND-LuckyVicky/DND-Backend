@@ -24,43 +24,6 @@ import lombok.RequiredArgsConstructor;
 public class YsController {
 	private final YsService ysService;
 
-	// 희나 ====
-	@PostMapping("")
-	public List<Destination> saveDestination(
-		HttpServletRequest request,
-		@RequestBody MapPosition mapPosition
-	) {
-		HttpSession session = request.getSession();
-		String userId = request.getRemoteAddr();
-		session.setAttribute("userId", userId);
-
-		return ysService.saveDestination(mapPosition, userId);
-	}
-
-
-	@PostMapping("")
-	public String selectDestination(
-		HttpServletRequest request,
-		@RequestBody SelectedDestination selectedDestination
-	) {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
-		ysService.selectDestination(userId);
-
-		return userId;
-	}
-
-	@GetMapping("")
-	public Results getResult(
-		HttpServletRequest request
-	) {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
-
-		return ysService.getResult(userId);
-	}
-	// =====
-
 	@PostMapping("")
 	public String saveFinalResult(
 		HttpServletRequest request,
