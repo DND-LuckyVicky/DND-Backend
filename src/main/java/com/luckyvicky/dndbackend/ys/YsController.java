@@ -24,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class YsController {
 	private final YsService ysService;
 
+	// 희나 ====
 	@PostMapping("")
 	public List<Destination> saveDestination(
 		HttpServletRequest request,
@@ -35,6 +36,7 @@ public class YsController {
 
 		return ysService.saveDestination(mapPosition, userId);
 	}
+
 
 	@PostMapping("")
 	public String selectDestination(
@@ -57,6 +59,7 @@ public class YsController {
 
 		return ysService.getResult(userId);
 	}
+	// =====
 
 	@PostMapping("")
 	public String saveFinalResult(
