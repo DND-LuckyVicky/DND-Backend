@@ -16,7 +16,8 @@ public record Destination(
 ) {
 
 	public static Destination of(
-		Path path
+		Path path,
+		MapPosition mapPosition
 	) {
 		var transport = Transport.from(path.pathType());
 		var totalPayment = switch (transport) {
@@ -28,8 +29,8 @@ public record Destination(
 			case TRAIN, EXPRESS_BUS, AIRPLANE, TRANSPORT_COMBINE -> path.info().transitCount();
 		};
 		return new Destination(
-			null,
-			null,
+			mapPosition.startName(),
+			mapPosition.endName(),
 			transport.getDescription(),
 			path.info().totalTime(),
 			totalPayment,

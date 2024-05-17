@@ -1,9 +1,6 @@
-package com.luckyvicky.dndbackend.ys;
+package com.luckyvicky.dndbackend.dto;
 
 import java.util.List;
-
-import com.luckyvicky.dndbackend.dto.RandomGotcha;
-import com.luckyvicky.dndbackend.dto.RecommendStatement;
 
 public record FinalResults(
 	String endName,

@@ -1,7 +1,5 @@
 package com.luckyvicky.dndbackend.dto;
 
-import com.luckyvicky.dndbackend.ys.FinalResults;
-
 public record PollingResult(
 	String endName,
 	Integer totalMinutes,
