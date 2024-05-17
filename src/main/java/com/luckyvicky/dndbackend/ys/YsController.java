@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.luckyvicky.dndbackend.dto.FinalResultRequest;
 import com.luckyvicky.dndbackend.dto.PollingResult;
 import com.luckyvicky.dndbackend.dto.SelectedRandomGotcha;
 
@@ -21,12 +22,11 @@ public class YsController {
 	@PostMapping("/api/final-result")
 	public String saveFinalResult(
 		HttpServletRequest request,
-		@RequestBody Long statementId
+		@RequestBody FinalResultRequest finalResultRequest
 	) {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
-
-		ysService.saveFinalResult(statementId, userId);
+		ysService.saveFinalResult(finalResultRequest, userId);
 
 		return userId;
 	}

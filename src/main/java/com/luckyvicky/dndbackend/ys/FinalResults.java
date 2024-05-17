@@ -12,4 +12,9 @@ public record FinalResults(
 	List<RandomGotcha> randomGotchas,
 	RecommendStatement recommendStatement
 ) {
+
+	static FinalResults from(FinalResults finalResults, RandomGotcha newRandomGotcha) {
+		return new FinalResults(finalResults.endName(), finalResults.totalMinutes(), finalResults.totalPayment(),
+			List.of(newRandomGotcha), finalResults.recommendStatement());
+	}
 }
