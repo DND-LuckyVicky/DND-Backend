@@ -6,6 +6,8 @@ public record Results(
 	String endName,
 	int totalMinutes,
 	int totalPayment,
+	String jokeByPrice,
+	String jokeByTime,
 	List<RandomGotcha> randomGotchas,
 	List<RecommendStatement> recommendStatements
 ) {

@@ -6,7 +6,7 @@ public record OdsaySearchResponse(
     Result result
 ) {
 
-    record Result(
+    public record Result(
         List<Path> path
     ) {
     }

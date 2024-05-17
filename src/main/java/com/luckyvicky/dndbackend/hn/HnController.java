@@ -19,17 +19,7 @@ import java.util.List;
 public class HnController {
     private final HnService hnService;
 
-    @PostMapping("/api/destination")
-    public List<Destination> saveDestination(
-        HttpServletRequest request,
-        @RequestBody MapPosition mapPosition
-    ) {
-        HttpSession session = request.getSession();
-        String userId = request.getRemoteAddr();
-        session.setAttribute("userId", userId);
 
-        return hnService.saveDestination(mapPosition, userId);
-    }
 
 
     @PostMapping("/api/destination/select")
