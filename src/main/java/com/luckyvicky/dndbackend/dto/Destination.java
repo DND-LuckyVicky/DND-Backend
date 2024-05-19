@@ -3,10 +3,10 @@ package com.luckyvicky.dndbackend.dto;
 import com.luckyvicky.dndbackend.hn.Path;
 import com.luckyvicky.dndbackend.hn.Transport;
 
+import java.util.List;
+
 public record Destination(
-	String startName,
-	String endName,
-	String vehicle,
+	List<String> vehicles,
 	int totalMinutes,
 	int totalPayment,
 	int transitCount,
@@ -16,8 +16,7 @@ public record Destination(
 ) {
 
 	public static Destination of(
-		Path path,
-		MapPosition mapPosition
+		Path path
 	) {
 		var transport = Transport.from(path.pathType());
 		var totalPayment = switch (transport) {
@@ -29,8 +28,6 @@ public record Destination(
 			case TRAIN, EXPRESS_BUS, AIRPLANE, TRANSPORT_COMBINE -> path.info().transitCount();
 		};
 		return new Destination(
-			mapPosition.startName(),
-			mapPosition.endName(),
 			transport.getDescription(),
 			path.info().totalTime(),
 			totalPayment,
